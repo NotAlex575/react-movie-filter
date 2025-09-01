@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Lista from "./Lista"
 
 const FilmList =  [
@@ -12,8 +12,19 @@ const FilmList =  [
 
 
 const Main = () => {
+    const [films, setFilms] = useState(FilmList)
+    const [search, setSearch] = useState("");
 
-    return(
+    useEffect(() => {
+        const filteredFilms = FilmList.filter((film) => {
+            return film.genre.toLowerCase().includes(search.toLowerCase())
+        })
+
+        setFilms(filteredFilms);
+    }, [search]);
+
+
+    return (
         <main>
             <div className="container">
                 <h2>Lista film</h2>
@@ -25,12 +36,18 @@ const Main = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {FilmList.map((film) => {
-                            return <Lista key={FilmList.id} film={film}></Lista> 
+                        {films.map((film) => {
+                            return <Lista key={film.title} film={film}></Lista> 
                         })}
                     </tbody>
                 </table>
-                <input type="text" placeholder="Cerca Film" className="w-80per"/>
+                <input 
+                    type="text" 
+                    placeholder="Cerca Film" 
+                    className="w-100per"
+                    value={search}
+                    onChange={(event) => setSearch(event.target.value)}
+                />
             </div>
         </main>
     )
