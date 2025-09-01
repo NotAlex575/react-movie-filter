@@ -1,12 +1,10 @@
 let Lista = ({film}) => {
     const {title, genre} = film;  
     return (
-        <div>
-            <ul>
-                <li>{title}</li>
-                <li>{genre}</li>
-            </ul>
-        </div>
+        <tr>
+            <td>{title}</td>
+            <td>{genre}</td>
+        </tr>
     );
 };
 

@@ -14,9 +14,22 @@ const FilmList =  [
 const Main = () => {
     return(
         <main>
-            {FilmList.map((film) => {
-                return <Lista key={FilmList.id} film={film}></Lista> 
-            })}
+            <div className="container">
+                <h2>Lista film</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Titolo</th>
+                            <th>Genere</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {FilmList.map((film) => {
+                            return <Lista key={FilmList.id} film={film}></Lista> 
+                        })}
+                    </tbody>
+                </table>
+            </div>
         </main>
     )
 }
