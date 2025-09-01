@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Lista from "./Lista"
 
 const FilmList =  [
    { title: 'Inception', genre: 'Fantascienza' },
@@ -9,5 +10,15 @@ const FilmList =  [
    { title: 'Pulp Fiction', genre: 'Thriller' },
  ]
 
- 
 
+const Main = () => {
+    return(
+        <main>
+            {FilmList.map((film) => {
+                return <Lista key={FilmList.id} film={film}></Lista> 
+            })}
+        </main>
+    )
+}
+
+export default Main;
