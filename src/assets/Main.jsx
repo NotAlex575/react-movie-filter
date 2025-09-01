@@ -12,16 +12,29 @@ const FilmList =  [
 
 
 const Main = () => {
+    //lista film iniziale
     const [films, setFilms] = useState(FilmList)
+    //lista film filtrati 
     const [search, setSearch] = useState("");
 
+    //non appena viene eseguito un filter (tramite input), 
+    //la lista aggiorna il contenuto in base a quello che abbiamo
+    //cercato
     useEffect(() => {
+
+        //uso il filter per aggiornare la lista in base alla value
+        //che viene inserita nell'input(se si trova la mette nella lista)
         const filteredFilms = FilmList.filter((film) => {
+
+            //converte la ricerca del genere del film in minuscolo
             return film.genre.toLowerCase().includes(search.toLowerCase())
         })
 
+        //aggiorna la lista con i film filtrati
         setFilms(filteredFilms);
-    }, [search]);
+        
+    }, [search]); //questo useEffect si esegue ogni volta 
+                  //che "seach" (in input->value) cambia
 
 
     return (
@@ -47,6 +60,8 @@ const Main = () => {
                     className="w-100per"
                     value={search}
                     onChange={(event) => setSearch(event.target.value)}
+                    //ogni volta che si inserisce un contenuto qui (che si trovi o non si trovi nella lista),
+                    //la lista si aggiorna
                 />
             </div>
         </main>
