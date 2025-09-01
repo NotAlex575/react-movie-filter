@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
+.w-20per{
+  width: 20%;
+}
+
+.w-80per{
+  width: 80%;
+}
+
 header{
   height: 200px;
   background-color: black;

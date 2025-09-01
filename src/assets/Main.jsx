@@ -12,6 +12,7 @@ const FilmList =  [
 
 
 const Main = () => {
+
     return(
         <main>
             <div className="container">
@@ -29,6 +30,7 @@ const Main = () => {
                         })}
                     </tbody>
                 </table>
+                <input type="text" placeholder="Cerca Film" className="w-80per"/>
             </div>
         </main>
     )
