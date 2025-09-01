@@ -1,7 +1,7 @@
 const Header = () => {
     return(
         <header>
-            <h1>React Fil Filter Esercizio</h1>
+            <h1>React Film Filter Esercizio</h1>
         </header>
     )
 };
