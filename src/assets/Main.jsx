@@ -15,7 +15,9 @@ const Main = () => {
     //lista film iniziale
     const [films, setFilms] = useState(FilmList)
     //lista film filtrati 
-    const [search, setSearch] = useState("");
+    const [searchGenre, setSearchGenre] = useState("");
+    //lista film filtrati 
+    const [searchTitle, setSearchTitle] = useState("");
 
     //non appena viene eseguito un filter (tramite input), 
     //la lista aggiorna il contenuto in base a quello che abbiamo
@@ -27,13 +29,32 @@ const Main = () => {
         const filteredFilms = FilmList.filter((film) => {
 
             //converte la ricerca del genere del film in minuscolo
-            return film.genre.toLowerCase().includes(search.toLowerCase())
+            return film.genre.toLowerCase().includes(searchGenre.toLowerCase())
         })
 
         //aggiorna la lista con i film filtrati
         setFilms(filteredFilms);
         
-    }, [search]); //questo useEffect si esegue ogni volta 
+    }, [searchGenre]); //questo useEffect si esegue ogni volta 
+                  //che "seach" (in input->value) cambia
+
+    //non appena viene eseguito un filter (tramite input), 
+    //la lista aggiorna il contenuto in base a quello che abbiamo
+    //cercato
+    useEffect(() => {
+
+        //uso il filter per aggiornare la lista in base alla value
+        //che viene inserita nell'input(se si trova la mette nella lista)
+        const filteredFilms = FilmList.filter((film) => {
+
+            //converte la ricerca del genere del film in minuscolo
+            return film.title.toLowerCase().includes(searchTitle.toLowerCase())
+        })
+
+        //aggiorna la lista con i film filtrati
+        setFilms(filteredFilms);
+        
+    }, [searchTitle]); //questo useEffect si esegue ogni volta 
                   //che "seach" (in input->value) cambia
 
 
@@ -58,8 +79,17 @@ const Main = () => {
                     type="text" 
                     placeholder="Cerca Film per genere" 
                     className="w-100per"
-                    value={search}
-                    onChange={(event) => setSearch(event.target.value)}
+                    value={searchGenre}
+                    onChange={(event) => setSearchGenre(event.target.value)}
+                    //ogni volta che si inserisce un contenuto qui (che si trovi o non si trovi nella lista),
+                    //la lista si aggiorna
+                />
+                <input 
+                    type="text" 
+                    placeholder="Cerca Film per titolo" 
+                    className="w-100per"
+                    value={searchTitle}
+                    onChange={(event) => setSearchTitle(event.target.value)}
                     //ogni volta che si inserisce un contenuto qui (che si trovi o non si trovi nella lista),
                     //la lista si aggiorna
                 />
