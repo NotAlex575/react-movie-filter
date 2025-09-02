@@ -28,30 +28,16 @@ const Main = () => {
         //che viene inserita nell'input(se si trova la mette nella lista)
         const filteredFilms = FilmList.filter((film) => {
 
-            //converte la ricerca del genere del film in minuscolo
-            return film.genre.toLowerCase().includes(searchGenre.toLowerCase())
+            //converte la ricerca del genere o del title (o di entrambi) del film in minuscolo
+            return film.genre.toLowerCase().includes(searchGenre.toLowerCase()) &&
+                   film.title.toLowerCase().includes(searchTitle.toLowerCase())
         })
 
         //aggiorna la lista con i film filtrati
         setFilms(filteredFilms);
         
-    }, [searchGenre]); //questo useEffect si esegue ogni volta 
-                  //che "seach" (in input->value) cambia
-
-
-    useEffect(() => {
-
-        
-        const filteredFilms = FilmList.filter((film) => {
-
-            //converte la ricerca del titolo del film in minuscolo
-            return film.title.toLowerCase().includes(searchTitle.toLowerCase())
-        })
-
-        //aggiorna la lista con i film filtrati
-        setFilms(filteredFilms);
-        
-    }, [searchTitle]); 
+    }, [searchGenre, searchTitle]); //questo useEffect si esegue ogni volta 
+                                    //che uno dei 2 "seach" (in input->value) cambia
 
 
     return (
