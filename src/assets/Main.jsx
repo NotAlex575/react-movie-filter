@@ -56,7 +56,7 @@ const Main = () => {
                 </table>
                 <input 
                     type="text" 
-                    placeholder="Cerca Film" 
+                    placeholder="Cerca Film per genere" 
                     className="w-100per"
                     value={search}
                     onChange={(event) => setSearch(event.target.value)}
